@@ -1,6 +1,13 @@
 # project1
 
+weather underground
+https://www.wunderground.com/weather/api/d/docs?MR=1
+https://www.wunderground.com/weather/api/d/docs?d=data/planner&MR=1
+
 zomato API - d150aa87132f13a2b96ee66a7f926f6f
+
+https://developers.zomato.com/documentation#!/location/location_details
+https://developers.zomato.com/documentation#!/location/location_details
 
 /geocode
 
@@ -1001,6 +1008,172 @@ search url: https://developers.zomato.com/api/v2.1/restaurant?res_id=17148530
 
 /eventful
 Key: 2pRpwC3ck9hKHFqh
+
+http://api.eventful.com/docs/events/search
+http://api.eventful.com/docs/faq
+http://api.eventful.com/docs/categories/list
+http://arunranga.com/examples/access-control/
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS
+
+http://api.eventful.com/docs/javascript_sample	
+
+
+for a JSON response, or converted to this 
+
+http://api.eventful.com/json/events/search?...&location=San+Diego
+
+Arguments
+
+	Example Request 1 - Any event in San Diego with the title books in it.
+
+	http://api.eventful.com/rest/events/search?...&keywords=books&location=San+Diego&date=Future
+
+	Example Request 2 - Any event withing 25 miles of a specific Lat / Long value in San Diego
+
+	http://api.eventful.com/rest/events/search?...&where=32.746682,-117.162741&within=25
+
+authentication
+This method controls access via authentication. Oauth is NOT needed but an application key (app_key query string parameter) is required.
+keywords string
+The search keywords. (optional)
+location string
+A location name to use in filtering the search results. Locations in the form "San Diego", "San Diego, TX", "London, United Kingdom", and "Calgary, Alberta, Canada" are accepted, as are postal codes ("92122") and venue IDs ("V0-001-000268633-5"). Common geocoordinate formats ("32.746682, -117.162741") are also accepted, but the "within" parameter is required in order to set a search radius. (optional)
+date string
+Limit this list of results to a date range, specified by label or exact range. Currently supported labels include: "All", "Future", "Past", "Today", "Last Week", "This Week", "Next week", and months by name, e.g. "October". Exact ranges can be specified the form 'YYYYMMDD00-YYYYMMDD00', for example '2012042500-2012042700'; the last two digits of each date in this format are ignored. (optional)
+
+within integer
+If within is set and the "location" parameter resolves to a specific geolocation, the search will be restricted to the specified radius. If the "location" parameter does not resolve to a specific location, this parameter is ignored. (optional)
+
+units string
+One of "mi" or "km", the units of the "within" parameter. Defaults to "mi".(optional)
+
+count_only boolean
+If count_only is set, an abbreviated version of the output will be returned. Only total_items and search_time elements are included in the result. (optional)
+
+sort_order string
+One of 'popularity', 'date', or 'relevance'. Default is 'relevance'. (optional)
+
+sort_direction string
+One of 'ascending' or 'descending'. Default varies by sort_order. (optional)
+
+page_size integer
+The desired number of results per page. (optional)
+
+page_number integer
+The desired page number. (optional)
+
+image_sizes string
+A comma separted list of image_sizes desired. See Faq for list of possible image sizes. (optional)
+
+languages integer
+Return our guess of each event language. ("Undetermined" is a possibility) (optional)
+
+mature string
+Sets the level of filtering for events marked as "mature" due to keywords in the title or description. One of 'all' (no filtering), 'normal', or 'safe'. 'Normal' mature filtering consists of words that are clearly profanities and inappropriate for younger audiences. 'Safe' mature filtering consists of all normal mature filtered words, as well as other terms that may be used as inappropriate innuendo. A 'safe' filter may eliminate events that are benign in nature, but contain questionable content based on keywords. Defaults to 'all'. (optional)
+
+include string
+Indicates that optional sections should be included in the result XML. Multiple section names can be indicated, separated by commas (e.g. 'categories,links'). Sections include 'categories', 'subcategories', 'popularity', 'tickets', 'price', and 'links'. (optional)
+
+change_multi_day_start boolean
+If set changes the start_date of long duration events (lasting multiple days) to the beginning of the search date range. It will also give the next occurence of a recurring event after the start range. This will prevent an event from appearing to be outside the date range requested . (optional)
+
+
+
+Output Parameters
+
+Output from this function is an XML block with the following constructs:
+
+total_items integer
+The total number of events matching this search. This can be an approximation if we wish.
+
+page_size integer
+The number of events per "page" returned.
+page_count integer
+The number of "pages" of output.
+page_number integer
+The current "page" number.
+page_items integer
+The number of events returned in this block. This is not necessarly the same as page_size. The last page, for instance, will probably not be a full page.
+first_item integer
+The item number of the first element on this page.
+last_item integer
+The item number of the last element on this page.
+search_time float
+The fractional number of seconds it took to satisfy this query.
+events array
+An array of page_items events. Each event entry has the following structure:
+id string
+The unique ID for this event. Presented as an event object attribute. See the example below.
+url string
+The page URL for this event on eventful.com.
+title string
+The event title.
+description string
+The event description.
+start_time string
+The event start time, in ISO 8601 format (e.g. "2005-03-01 19:00:00").
+stop_time string
+The event stop time, in ISO 8601 format (e.g. "2005-03-01 19:00:00").
+venue_id integer
+The venue ID.
+venue_url string
+The page URL for this venue on eventful.com.
+venue_name string
+The venue name.
+venue_display boolean
+Whether or not the venue name should be displayed in certain cirumstances. Eventful's notion of a venue is a bit broader than you might think. For example, events for which only the postal code is known have a venue named "Postal code 46311, US", for instance. In these cases, a traditional address block looks a bit unusual, and Eventful chooses not to display the venue name in these cases. You may wish to do the same, and the venue_display parameter allows you to do that.
+venue_address string
+The venue address.
+city_name string
+The venue city_name.
+region_name string
+The venue state/province/other name.
+region_abbr string
+The venue state/province/other abbreviation.
+postal_code string
+The venue postal code.
+country_name string
+The venue country name.
+all_day integer
+A false value (0) indicates that the start_time and stop_time are as listed. If the all_day flag is set to 1 (all day) or 2 (no time specified), then the time should be omitted from start_time and stop_time.
+latitude signed float
+The venue latitude.
+longitude signed float
+The venue longitude.
+geocode_type string
+The method used to geocode the venue latitude and longitude.
+trackback_count integer
+The number of trackback entries associated with this event.
+calendar_count integer
+The number of calendars to which this event has been added.
+comment_count integer
+The number of comments associated with this event.
+link_count integer
+The number of URLs associated with this event.
+created string
+The event creation time (e.g. "2005-03-01 19:00:00").
+owner string
+The username of the event owner.
+modified string
+The event modification time (e.g. "2006-01-03 21:35:09").
+
+
+FROM EVENTFUL - LOCATION AJAX
+    var setLocation = function(position) {
+        var url = document.location.toString();
+        url = url.replace(/geo=([^&]+)/, "");
+        $.ajax({
+            type: 'GET',
+            data: {
+                location: position.coords.latitude + ',' + position.coords.longitude,
+                url: url
+            },
+            url: '/json/tools/location/geo-coordinates',
+            dataType: 'json',
+            success: changeLocation,
+            error: function(e) {}
+        });
+    };
 
 
 
