@@ -74,42 +74,74 @@ $(document).ready(function () {
 
 
 $(document).ready(function () {
-  console.log("i'm ready")
-  // $Zomato.init("d150aa87132f13a2b96ee66a7f926f6f");
 
-  // Zomato.restaurant("16774318",function(restaurant){
-  //   console.log(restaurant);
-  //   //do your logic for restaurant's data.
-  //   },function(error){
-  //     console.log("not yet")
-  //   //on error here is the logic for on error 
-  // })
+  Zomato.init({key:"d150aa87132f13a2b96ee66a7f926f6f",version:"v2.1"});
 
-  var objTypeLoc = {
-    "user-key" : "d150aa87132f13a2b96ee66a7f926f6f",
-    "query" : "Charlotte",
-    "lat" : "35.2270869", 
-    "lon" : "-80.8431267",
-    "count" : "10"
-  } 
+  Zomato.restaurant("16774318",function(restaurant){
+    console.log(restaurant);
+    //do your logic for restaurant's data.
+    },function(error){
+      console.log("not yet")
+    //on error here is the logic for on error 
+  })
 
-  //data.results[0].address_components[0].long_name
-  var locationsURL = "https://developers.zomato.com/api/v2.1/locations?"
-  // var apiKey = "d150aa87132f13a2b96ee66a7f926f6f"
-    $.ajax({
-        url: locationsURL,
-        data: objTypeLoc,
-        // headers: {
-        //     'Accept': 'application/json',
-        //     'user_key': 'd150aa87132f13a2b96ee66a7f926f6f'
-        // },
-        dataType:'jsonp',
-        success: null
-      })
-      .done(function(data) {
-        console.log(data)
-  });
-});
+
+    Zomato.geocode({latitide:"35.0526641",longitude:"-78.87835849999999"},function(restaurant){
+    console.log(restaurant);
+    //do your logic for restaurant's data.
+    },function(error){
+      console.log("not yet")
+    //on error here is the logic for on error 
+    onload()
+  })
+  // var objRest = {
+  //   term : "food",
+  //   latitude: "35.2270869",
+  //   longitude: "-80.8431267"
+  // }
+  //  var queryURL = "https://api.yelp.com/v3/businesses/search"
+  //   $.ajax({
+  //           url: queryURL,
+  //           data: objRest,
+  //           headers: {
+  //               'Accept': 'application/json',
+  //               'user_key': 'd150aa87132f13a2b96ee66a7f926f6f'
+  //           },
+  //           dataType:'jsonp',
+  //           success: null
+  //         })
+  //         .done(function(data) {
+  //           console.log(data)
+
+
+})
+//   console.log("i'm ready")
+
+//   var objTypeLoc = {
+//     "user-key" : "d150aa87132f13a2b96ee66a7f926f6f",
+//     "query" : "Charlotte",
+//     "lat" : "35.2270869", 
+//     "lon" : "-80.8431267",
+//     "count" : "10"
+//   } 
+
+//   //data.results[0].address_components[0].long_name
+//   var locationsURL = "https://developers.zomato.com/api/v2.1/locations?"
+//   // var apiKey = "d150aa87132f13a2b96ee66a7f926f6f"
+//     $.ajax({
+//         url: locationsURL,
+//         data: objTypeLoc,
+//         headers: {
+//             'Accept': 'application/json',
+//             'user_key': 'd150aa87132f13a2b96ee66a7f926f6f'
+//         },
+//         dataType:'jsonp',
+//         success: null
+//       })
+//       .done(function(data) {
+//         console.log(data)
+//   });
+// });
   // var locationsURLL = "https://developers.zomato.com/api/v2.1/locations?user-key=d150aa87132f13a2b96ee66a7f926f6f&query=charlotte"
   // $.get(locationsURLL,function (data) {
   //   console.log(data);
