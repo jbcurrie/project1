@@ -21,7 +21,8 @@ var entityType = "";
             //need these to run the locationsDetails function
             entityId = s.location_suggestions[0].entity_id;
             entityType = s.location_suggestions[0].entity_type;
-            alsoload()
+            alsoload();
+            geocode();
         });
     };
 
@@ -36,3 +37,17 @@ var entityType = "";
             console.log(entityType)
         });
     };
+
+    function geocode(param) {
+        // debugger;
+        Zomato.geocode({
+            //replace query with the city name from google search
+            //replace with the lat/long variables
+            lat: 25.790654,
+            lon: -80.1300455
+        }, function(s) {
+            // document.getElementById("locations_op").innerHTML = JSON.stringify(s);
+            console.log(s)
+            // debugger;
+        });
+    }
