@@ -130,7 +130,7 @@ var Zomato = {
             }
         }
         req.onreadystatechange = function() {
-            console.log(req.readyState)
+            // console.log(req.readyState)
             if (req.readyState === 4 && req.status === 200) {
                 opts.success(req.response);
             } else if (req.status === "400" || req.status === "401" || req.status === "403" || req.status === "404") {

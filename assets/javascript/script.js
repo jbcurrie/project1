@@ -8,10 +8,10 @@ var entityType = "";
         // debugger;
         Zomato.locations({
             //replace query with the city name from google search
-            query: "charlotte",
+            query: "Hell, MI 48169, USA",
             //replace with the lat/long variables
-            latitude: 35.2270869,
-            longitude: -80.8431267,
+            latitude: 42.43472,
+            longitude: -83.985,
             //returns the first matching city
             count: 1
         }, function(s) {
@@ -43,8 +43,8 @@ var entityType = "";
         Zomato.geocode({
             //replace query with the city name from google search
             //replace with the lat/long variables
-            lat: 25.790654,
-            lon: -80.1300455
+            lat: 42.43472,
+            lon: -83.985
         }, function(s) {
             // document.getElementById("locations_op").innerHTML = JSON.stringify(s);
             console.log(s)
