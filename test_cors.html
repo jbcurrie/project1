@@ -2,11 +2,19 @@
 	<html lang="en">
 		<head>
 			<!-- <script>debugger;</script> -->
+			<!-- <script>debugger</script> -->
 			<meta charset="UTF-8">
 			<meta name="viewport" content="width=device-width, initial-scale=1">
 			<title>CORS ready API demo</title>
 			<script type="text/javascript" src="https://api.eventful.com/js/api"></script>
+			<!-- <script type="text/javascript" src="https://developers.zomato.com/api/v2.1/locations?user-key=d150aa87132f13a2b96ee66a7f926f6f"></script> -->
+			<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+			<script type="text/javascript" src="script.js"></script>
+			<!-- <script type="text/javascript" src="https://developers.zomato.com/api/"</script> -->
+			<!-- <script type="text/javascript" src="zomato.js"</script> -->
+			
 			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+			
 		</head>
 		<body>
 			<div class="container">
@@ -38,7 +46,7 @@
 									<input id="latitude" type="text" name="">
 								 	<input id="longitude" type="text" name="longitude">
 								    <input id="query" type="text" name="query">
-								    <button type="submit">Zomato</button>
+								    <button class="zomatoBtn" type="submit">Zomato</button>
 								</div>
 							</form>
 						</div>
@@ -47,7 +55,8 @@
 				</div>
 			</div>
 
-			<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-			<script type="text/javascript" src="script.js"></script>
+			
+			
+
 		</body>
 	</html>

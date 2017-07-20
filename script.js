@@ -74,6 +74,17 @@ $(document).ready(function () {
 
 
 $(document).ready(function () {
+  console.log("i'm ready")
+  // $Zomato.init("d150aa87132f13a2b96ee66a7f926f6f");
+
+  // Zomato.restaurant("16774318",function(restaurant){
+  //   console.log(restaurant);
+  //   //do your logic for restaurant's data.
+  //   },function(error){
+  //     console.log("not yet")
+  //   //on error here is the logic for on error 
+  // })
+
   var objTypeLoc = {
     "user-key" : "d150aa87132f13a2b96ee66a7f926f6f",
     "query" : "Charlotte",
@@ -98,13 +109,12 @@ $(document).ready(function () {
       .done(function(data) {
         console.log(data)
   });
-
-  var locationsURLL = "https://developers.zomato.com/api/v2.1/locations?user-key=d150aa87132f13a2b96ee66a7f926f6f&query=charlotte"
-  $.get(locationsURLL,function (data) {
-    console.log(data);
-  })
 });
-// function showEvents () {
+  // var locationsURLL = "https://developers.zomato.com/api/v2.1/locations?user-key=d150aa87132f13a2b96ee66a7f926f6f&query=charlotte"
+  // $.get(locationsURLL,function (data) {
+  //   console.log(data);
+  // })
+// // function showEvents () {
 //   $("body").one("click",".eventBtn", function(event) {
 //     event.preventDefault();
 //     debugger;
