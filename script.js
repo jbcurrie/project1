@@ -1,21 +1,115 @@
 // EVENTFUL
 //--------------------------------------------------------------------------------------------------------------//
 
-// var results = {};
-// var div = $("<div>");
-// var p = $("<p>");
-// var eventObj = {};
-var lat = "";
-var lng = "";
-var location = "";
+$(document).ready(function () {
+  console.log("i'm ready")
+
+  var results = {};
+  var div = $("<div>");
+  var p = $("<p>");
+  var eventObj = {};
+  var latitude = "";
+  var longitude = "";
+  var location = "";
+
+      var oArgs = { 
+      app_key: "2pRpwC3ck9hKHFqh", 
+      q:"music",
+      // "35.2270869"+"," + "-80.8431267", - charlotte
+      location: "35.2270869" +"," + "-80.8431267",
+      within: 25,
+      date: "This Week",
+      // "All", "Future", "Past", "Today", "Last Week", "This Week", "Next week", and months by name
+      // 'YYYYMMDD00-YYYYMMDD00', for example '2012042500-2012042700'; the last two digits of each date in this format are ignored. 
+      sort_order: "popularity",
+      sort_direction: "ascending",
+      image_sizes: "small",
+      page_size: 10
+      //number of results per page
+      // page_number: 1 
+    }; 
+
+    EVDB.API.call("/events/search", oArgs, function(data) { 
+      results = data;
+
+      console.log(results);
+      // $(".print").append(JSON.stringify(data))
+    })
+
+  $("body").on("click","button", function(event) {  
+      // debugger;
+      event.preventDefault();
+    
+      // latitude= $("#latitude").val().trim();
+      // longitude = $("#longitude").val().trim();
+      // var events = results.events.event;
+      var events
+    for (var i=0; i < results.events.event.length; i++) {
+      debugger;
+         var html = "<h2>" + results.events.event[i].title + "</h2>" +
+                     "<h2>"+ results.events.event[i].description  ;
+      $ (".display").append(html)
+
+     
+      
+          // image: $("<img class='img-responsive center-block'>"),
+          // image: function () {eventObj.image.attr("src",events.image.small.url)},
+          
+          // p.text(events.title),
+          // p.text(events.description),
+          // p.text(events.venue_address),
+          // p.text(events.postal_code),
+          // p.text(events.latitude),
+          // p.text(events.longitude),
+          // p.text(events.start_time),
+          // p.text(events.stop_time),
+          // p.text(events.url)
 
 
+      // eventObj.image.attr("src",events.image.small.url)
+    }
+    // $(".display").append(div);
+  });
+})
+
+
+$(document).ready(function () {
+  var objTypeLoc = {
+    "user-key" : "d150aa87132f13a2b96ee66a7f926f6f",
+    "query" : "Charlotte",
+    "lat" : "35.2270869", 
+    "lon" : "-80.8431267",
+    "count" : "10"
+  } 
+
+  //data.results[0].address_components[0].long_name
+  var locationsURL = "https://developers.zomato.com/api/v2.1/locations?"
+  // var apiKey = "d150aa87132f13a2b96ee66a7f926f6f"
+    $.ajax({
+        url: locationsURL,
+        data: objTypeLoc,
+        // headers: {
+        //     'Accept': 'application/json',
+        //     'user_key': 'd150aa87132f13a2b96ee66a7f926f6f'
+        // },
+        dataType:'jsonp',
+        success: null
+      })
+      .done(function(data) {
+        console.log(data)
+  });
+
+  var locationsURLL = "https://developers.zomato.com/api/v2.1/locations?user-key=d150aa87132f13a2b96ee66a7f926f6f&query=charlotte"
+  $.get(locationsURLL,function (data) {
+    console.log(data);
+  })
+});
 // function showEvents () {
 //   $("body").one("click",".eventBtn", function(event) {
 //     event.preventDefault();
 //     debugger;
-//       // lat= $("#latitude").val().trim();
-//       // lng = $("#longitude").val().trim();
+//       // latitude= $("#latitude").val().trim();
+//       // longitude = $("#longitude").val().trim();
 //     var events = results.events.event;
 
 //     for (var i=0; i < events.length; i++) {

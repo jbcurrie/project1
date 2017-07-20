@@ -1,23 +1,53 @@
 <!DOCTYPE html>
-<html>
-Javascript Sample page. Enter in your app_key and any search criteria you want. <br>
-<div class="print">And here is the sample code:</div>
-<script type="text/javascript" src="https://api.eventful.com/js/api"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<html lang="en">
+		<head>
+			<!-- <script>debugger;</script> -->
+			<meta charset="UTF-8">
+			<meta name="viewport" content="width=device-width, initial-scale=1">
+			<title>CORS ready API demo</title>
+			<script type="text/javascript" src="https://api.eventful.com/js/api"></script>
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+		</head>
+		<body>
+			<div class="container">
+				<div class="page-header">
+	  				<h1>API DEMO <small>Eventful and Zomato</small></h1>
+				</div>
+				<div class="row">
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						<textarea class="form-control" id="exampleTextarea" rows="20"></textarea>
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						<div class="row">
+							<div class="print">Queries</div>
+						</div>
+						<div class="row">
+							<form id="eventful" >
+								<div class="form-group">
+									<input id="latitude" type="text" name="latitude" placeholder="lat">
+								 	<input id="longitude" type="text" name="longitude" placeholder="lng">
+								    <input id="query" type="text" name="query">
+								    <button class="eventfulBtn" type="submit">Eventful</button>
+								</div>
+							</form>
+							
+						</div>
+						<div class="row">
+							<form id="Zomato" >
+								<div class="form-group">
+									<input id="latitude" type="text" name="">
+								 	<input id="longitude" type="text" name="longitude">
+								    <input id="query" type="text" name="query">
+								    <button type="submit">Zomato</button>
+								</div>
+							</form>
+						</div>
+						<div class="display"></div>
+					</div>
+				</div>
+			</div>
 
-
-<body>
-<form >
-  Your app_key <input id="app_key" type="text" name="app_key" value=""/> <br>
-  Where <input id="where"   type="text" name="where" value=""/> <br>
-  Query <input id="query"   type="text" name="query" value=""/> <br>
-</form>
-<input type="button" value="Events " /> <br>
-<input type="button" value="Restaurants" /> <br>
-<br>
-<br>
-
-	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-	<script type="text/javascript" src="cors_script.js"></script>
-</body>
-</html>
+			<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+			<script type="text/javascript" src="script.js"></script>
+		</body>
+	</html>

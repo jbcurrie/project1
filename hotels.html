@@ -270,7 +270,9 @@
       // When the user selects a city, get the place details for the city and
       // zoom the map in on the city.
       function onPlaceChanged() {
+        
         var place = autocomplete.getPlace();
+        console.log(place);
         if (place.geometry) {
           map.panTo(place.geometry.location);
           map.setZoom(10);
@@ -461,7 +463,7 @@
     each marker is an object that includes among other things, a places_id -->
 
     <!-- city zoom :10 -->
-    POI zoom 15
+    <!-- POI zoom 15 -->
 
 <!--     // Travel Bear 
 //  Shows a map with points of interest for each city 
