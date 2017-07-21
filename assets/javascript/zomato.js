@@ -15,15 +15,15 @@ var Zomato = {
         url = u + version;
     },
     geocode: function(coords, scb, ecb) {
-        if (coords.latitude && coords.longitude === null) {
+        if (coords.lat && coords.lon === null) {
             console.error("Enter the coordinates correctly");
         } else {
             this.request({
                 url: url + "/geocode",
                 headers: zheader,
                 data: {
-                    lat: coords.latitude,
-                    lon: coords.longitude
+                    lat: coords.lat,
+                    lon: coords.lon
                 },
                 success: function(response) {
                     scb(response);
@@ -35,7 +35,7 @@ var Zomato = {
         }
     },
     locations:function (coords,scb,ecb) {
-        if (coords.latitude&&coords.longitude&&coords.query==null) {
+        if (coords.lat&&coords.lon&&coords.query==null) {
           console.error("Enter the coordinates correctly");
         } else {
           // debugger;
@@ -44,8 +44,8 @@ var Zomato = {
               headers:zheader,
               data:{
                 query:coords.query,
-                lat:coords.latitude,
-                lon:coords.longitude,
+                lat:coords.lat,
+                lon:coords.lon,
                 count:coords.count
               },
               success:function (response) {

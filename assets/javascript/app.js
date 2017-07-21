@@ -1,6 +1,8 @@
 // API key
 var mapsKey = "AIzaSyCdasgXLKtxe1vhh8nU7KP3tgCYB8o2yZg";
 var map, icon, city, state, fullName;
+//zomato specific variables;
+var lat,lon,entityId,entityType;
 var markers = [];
 var markerArr = [];
 var events = [];
@@ -130,6 +132,7 @@ function initMap() {
   	var autocomplete = new google.maps.places.Autocomplete(input, options);
   	google.maps.event.addListener(autocomplete, 'place_changed', function () {
     	fullName = autocomplete.getPlace().formatted_address;
+    	console.log(fullName);
     	if(fullName) {
     		citySearch();
     	}
@@ -144,6 +147,7 @@ function updateMap(lat, lng, zLevel) {
 
 // geocode api request for lat lng of input field value
 function citySearch() {
+	debugger;
 	$(".display2").empty();
 	clearMarkers();
 	markers = [];
@@ -164,12 +168,16 @@ function citySearch() {
 		var latLng = new google.maps.LatLng(loc.lat, loc.lng);
 		addPlaces(latLng);
 		eventSearch(loc.lat, loc.lng);
+		debugger;
 		city = data.results[0].address_components[0].long_name;
+		// lat = data.results[0].geometry.location.lat
+		// lon = data.results[0].geometry.location.lat
 		if(data.results[0].address_components.length >= 5) {
 			state = data.results[0].address_components[3].short_name;
 			if(data.results[0].address_components.length == 7){
 				state = data.results[0].address_components[4].short_name;
 			}
+		zomatoCitySearch(loc.lat,loc.lng);
 		} else {
 			state = data.results[0].address_components[2].short_name
 		}
@@ -182,7 +190,6 @@ function citySearch() {
 		// clears the search box after submit
 		// $("#autocomplete").val("");
 	});
-	
 }
 function eventSearch(lat, lng) {
 	var oArgs = { 
@@ -252,6 +259,45 @@ function cseSearch(query) {
 		}
 	});	
 }
+
+
+function zomatoCitySearch(lat,lon) {
+
+    Zomato.init({
+        key: "d150aa87132f13a2b96ee66a7f926f6f"
+    });
+    debugger;
+    Zomato.locations({
+        //replace query with the city name from google search
+        query: "",
+        //replace with the lat/long variables
+        lat: lat,
+        lon: lon,
+        //returns the first matching city
+        count: 1
+    }, function(s) {
+        // document.getElementById("locations_op").innerHTML = JSON.stringify(s);
+        console.log(s)
+        // debugger;
+        //need these to run the locationsDetails function
+        entityId = s.location_suggestions[0].entity_id;
+        entityType = s.location_suggestions[0].entity_type;
+        zomatoCityRestaurants(entityId,entityType);
+        // geocode();
+    });
+};
+
+function zomatoCityRestaurants(entityId,entityType) {   
+    Zomato.locationsDetails({
+        entity_id: entityId,
+        entity_type: entityType,
+    }, function(s) {
+        // document.getElementById("locations_op").innerHTML = JSON.stringify(s);
+        console.log(s)
+        console.log(entityId)
+        console.log(entityType)
+    });
+};
 
 function w3_open() {
     document.getElementById("main").style.marginRignt = "25%";
