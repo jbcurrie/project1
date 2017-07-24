@@ -1,5 +1,30 @@
 # project1
 
+/yelp
+
+
+Client ID
+hnAox4KQN8oBc_MWveKs4Q
+Client Secret
+Z6Bws60RuiqpnOB9Mkh4sCbj5UfIMwmlcU1st1NSQRF72UMF2zuaqP5lTtzoKgiH
+Hide App Name
+
+App name
+uncc bootcamp's App
+Key
+dda03511a3dfc67d70a2859df42a2bff
+Add this as a user_key parameter to your API calls to authenticate.
+
+Display any business listing information (that includes addresses, phone numbers, location, etc.) without also displaying Yelp attribution in compliance with the display requirements. Attribution is extremely important to us here — the casual user must understand that the business listing information came from Yelp!
+Blend star rating content from Yelp with rating content from other sources. This means no aggregated “overall ratings” which utilize multiple sources of ratings. Yelp content must stand alone.
+Store data longer than 24 hours.
+Suggest that it’s possible for you to remove critical reviews or create positive reviews on Yelp.
+
+business search
+https://api.yelp.com/v3/businesses/search
+
+
+
 maps
 my console 
 https://console.developers.google.com/apis/api/maps-backend.googleapis.com/overview?project=group-project-1-174115&duration=PT1H

@@ -1,10 +1,10 @@
             // lat: 37.9635374,
             // lon: -77.7373582,
 console.log(this)
-var stAbbr = ""
-var city = ""
-var beginConvert = ""
-var end= ""
+var stAbbr,city,beginConvert;
+// var city = ""
+// var beginConvert = ""
+// var end= ""
 var lat = ""
 var lon = ""
 
@@ -20,6 +20,10 @@ var lon = ""
     var begin = String(startDateData);
     beginConvert = begin + '01';
     end = begin + '28';
+    var d = new Date();
+    var n = d.getMonth()
+    var month = n + 1;
+    console.log(month);
     latlng();
   });
 

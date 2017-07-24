@@ -1,7 +1,7 @@
 // API key
 var mapsKey = "AIzaSyCdasgXLKtxe1vhh8nU7KP3tgCYB8o2yZg";
 var map, icon, city, state, fullName;
-//zomato specific variables;
+//zomato specific variables;	
 var lat,lon,entityId,entityType;
 var markers = [];
 var markerArr = [];
@@ -95,6 +95,7 @@ function addEventMarkers() {
 	}, 125);
 }
 function searchPlaces(results, status) {
+	console.log(results);
 	if(status == google.maps.places.PlacesServiceStatus.OK) {
 		for(var i = 0; i < results.length; i++) {
 			var place = results[i];
@@ -147,7 +148,7 @@ function updateMap(lat, lng, zLevel) {
 
 // geocode api request for lat lng of input field value
 function citySearch() {
-	debugger;
+	// debugger;
 	$(".display2").empty();
 	clearMarkers();
 	markers = [];
@@ -168,7 +169,7 @@ function citySearch() {
 		var latLng = new google.maps.LatLng(loc.lat, loc.lng);
 		addPlaces(latLng);
 		eventSearch(loc.lat, loc.lng);
-		debugger;
+		zomatoCitySearch(loc.lat,loc.lng);
 		city = data.results[0].address_components[0].long_name;
 		// lat = data.results[0].geometry.location.lat
 		// lon = data.results[0].geometry.location.lat
@@ -177,7 +178,6 @@ function citySearch() {
 			if(data.results[0].address_components.length == 7){
 				state = data.results[0].address_components[4].short_name;
 			}
-		zomatoCitySearch(loc.lat,loc.lng);
 		} else {
 			state = data.results[0].address_components[2].short_name
 		}
@@ -213,7 +213,10 @@ function eventSearch(lat, lng) {
   		for(var i = 0; i < event.length; i++) {
 			var place = event[i];
 			events.push(place);
+
 		}
+		console.log(data);
+		console.log(events);
 		addEventMarkers();
     });
 }
@@ -266,7 +269,7 @@ function zomatoCitySearch(lat,lon) {
     Zomato.init({
         key: "d150aa87132f13a2b96ee66a7f926f6f"
     });
-    debugger;
+    // debugger;
     Zomato.locations({
         //replace query with the city name from google search
         query: "",
@@ -298,6 +301,18 @@ function zomatoCityRestaurants(entityId,entityType) {
         console.log(entityType)
     });
 };
+
+// function zomatoCityRestaurants(entityId,entityType) {   
+//     Zomato.locationsDetails({
+//         entity_id: entityId,
+//         entity_type: entityType,
+//     }, function(s) {
+//         // document.getElementById("locations_op").innerHTML = JSON.stringify(s);
+//         console.log(s)
+//         console.log(entityId)
+//         console.log(entityType)
+//     });
+// };
 
 function w3_open() {
     document.getElementById("main").style.marginRignt = "25%";
