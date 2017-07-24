@@ -14,28 +14,8 @@ var Zomato = {
         version = opts.version || "v2.1";
         url = u + version;
     },
-    geocode: function(coords, scb, ecb) {
-        if (coords.lat && coords.lon === null) {
-            console.error("Enter the coordinates correctly");
-        } else {
-            this.request({
-                url: url + "/geocode",
-                headers: zheader,
-                data: {
-                    lat: coords.lat,
-                    lon: coords.lon
-                },
-                success: function(response) {
-                    scb(response);
-                },
-                error: function(res) {
-                    ecb(res);
-                }
-            });
-        }
-    },
-    locations:function (coords,scb,ecb) {
-        if (coords.lat&&coords.lon&&coords.query==null) {
+    locations:function (coords, success, err) {
+        if (coords.lat === null && coords.lon === null) {
           console.error("Enter the coordinates correctly");
         } else {
           // debugger;
@@ -49,17 +29,18 @@ var Zomato = {
                 count:coords.count
               },
               success:function (response) {
-                scb(response);
+                success(response);
               },
               error:function (res) {
-                ecb(res)
+                err(res)
               }
             });
         }
     },
-    locationsDetails:function (coords,scb,ecb) {
-        if (coords.id&&coords.type==null) {
-          console.error("Enter the coordinates correctly");
+    locationsDetails:function (coords, success, err) {
+        // debugger;
+        if (coords.entityId === null && coords.entityType === null) {
+          console.error("Enter the id and type correctly");
         } else {
           // debugger;
             this.request({
@@ -70,10 +51,10 @@ var Zomato = {
                 entity_type:coords.entity_type,
               },
               success:function (response) {
-                scb(response);
+                success(response);
               },
               error:function (res) {
-                ecb(res)
+                err(res)
               }
             });
         }
@@ -118,7 +99,6 @@ var Zomato = {
             }
             opts.url = opts.url + q;
         }
-
         //setting data
 
         req.open(opts.type === undefined ? "GET" : opts.type, opts.url, true);
